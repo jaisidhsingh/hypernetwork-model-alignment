@@ -1,3 +1,13 @@
+<div align="center">
+
+# (Almost) Free Modality Stitching of Foundation Models
+![Paper](https://img.shields.io/badge/paper-arxiv.2507.10015-red)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
+<img src="assets/overview_new3-3.pdf">
+</div>
+
+
 ## Todos
 
 - [x] Upload data
