@@ -7,7 +7,7 @@ Jaisidh Singh $^{1,2,4}$, Diganta Misra $^{3,4}$, Boris Knyazev $^{5}$, Antonio 
 $^1$ University of Tübingen, $^2$ Zuse School ELIZA, $^3$ ELLIS Institute Tübingen, $^4$ MPI-IS Tübingen, $^5$ SAIT AI Lab Montréal, $^6$ Tübingen AI Center 
 
 <a href="https://arxiv.org/pdf/2507.10015">![Paper](https://img.shields.io/badge/paper-arxiv.2507.10015-red)</a>
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+<a href="./LICENSE">![License](https://img.shields.io/badge/license-MIT-blue.svg)</a>
 
 ### Abstract
 
@@ -31,7 +31,7 @@ We embed the samples of CC3M-558K (in-order) across 9 image encoders and 3 text 
 ## Citation
 
 If you found our work useful, please cite our paper as
-```tex
+```bib
 @article{singh2025almost,
   title={(Almost) Free Modality Stitching of Foundation Models},
   author={Singh, Jaisidh and Misra, Diganta and Knyazev, Boris and Orvieto, Antonio},
