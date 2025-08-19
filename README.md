@@ -26,7 +26,7 @@ The checkpoints of $\text{MLP}_1$ connectors for VLMs obtained via our method HY
 
 ## Pre-emebedded CC3M-558K dataset
 
-We embed the samples of CC3M-558K (in-order) across 9 image encoders and 3 text encoders, normalize all embeddings, and upload them <a href="https://huggingface.co/collections/jaisidhsingh/hyma-llava-alignment-cc3m-558k-pre-embedded-68a34597f1e8d93e2a40c8b4">here</a>. Each `.pt` filename provides the description of the model used to embed the data.
+We embed the samples of CC3M-558K (in-order) across 9 image encoders and 3 text encoders, normalize all embeddings, and upload them <a href="https://huggingface.co/collections/jaisidhsingh/hyma-llava-alignment-cc3m-558k-pre-embedded-68a34597f1e8d93e2a40c8b4">here</a>. Each `.pt` filename provides the description of the model for embedding.
 
 ## Citation
 
@@ -39,13 +39,3 @@ If you found our work useful, please cite our paper as
   year={2025}
 }
 ```
-
-## Todos
-
-- [x] Upload data
-- [x] Upload checkpoints
-- [ ] Add code to load in the VLM into a `CustomVLM` object
-- [ ] Add code to load in the data into a `Dataset` object
-- [x] Add more instructions to README 
-- [ ] Add model cards and data cards on huggingface.
-- [ ] Add citation
