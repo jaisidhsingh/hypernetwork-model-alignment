@@ -2,6 +2,7 @@ import timm
 import torch
 from typing import *
 import torch.nn as nn
+from torch.utils.data import Dataset
 import torch.nn.functional as F
 from upload_data import ie_name_maps, te_name_maps
 from sentence_transformers import SentenceTransformer
@@ -107,6 +108,17 @@ class CustomVLM():
         if self.connector is not None:
             x = self.connector(x)
         return x
+
+
+class EmbeddingDataset(Dataset):
+    def __init__(self, filepath):
+        self.embeddings = torch.load(filepath, weights_only=False, map_location="cpu")
+
+    def __len__(self):
+        return len(self.embeddings)
+
+    def __getitem__(self, idx):
+        return self.embeddings[idx]   
 
 
 def get_vlm_from_checkpoint(checkpoint_path):

@@ -24,7 +24,7 @@ This repositories releases the data used to train a generative model of multi-mo
 
 The checkpoints of $\text{MLP}_1$ connectors for VLMs obtained via our method HYMA and Grid Search are uploaded to <a href="https://huggingface.co/collections/jaisidhsingh/hyma-vlm-connector-checkpoints-68a34befaad027913f605c81">here</a>. Note that we upload the connectors for the best performing encoder pairs, of feature dimension 1024 and 768 (for both image and text). Each `.pt` filename provides the description of the image encoder and text encoder aligned via the connector.
 
-An easy way to load the connector checkpoint for the corresponding VLM is to use the `get_vlm_from_checkpoint` function in `vlm.py` as
+An easy way to load the connector checkpoint for the corresponding VLM is to use the `get_vlm_from_checkpoint` function in `utils.py` as
 ```python
 from vlm import get_vlm_from_checkpoint
 
@@ -134,8 +134,25 @@ class CustomVLM():
 
 ## Pre-emebedded CC3M-558K dataset
 
-We embed the samples of CC3M-558K (in-order) across 9 image encoders and 3 text encoders, normalize all embeddings, and upload them <a href="https://huggingface.co/collections/jaisidhsingh/hyma-llava-alignment-cc3m-558k-pre-embedded-68a34597f1e8d93e2a40c8b4">here</a>. Each `.pt` filename provides the description of the model for embedding.
+We embed the samples of CC3M-558K (in-order) across 9 image encoders and 3 text encoders, normalize all embeddings, and upload them <a href="https://huggingface.co/collections/jaisidhsingh/hyma-llava-alignment-cc3m-558k-pre-embedded-68a34597f1e8d93e2a40c8b4">here</a>. Each `.pt` filename provides the description of the model for embedding. A PyTorch dataset can be created after loading the embeddings to train your custom connectors as
+```python
+from torch.utils.data import Dataset, DataLoader
 
+class EmbeddingDataset(Dataset):
+    def __init__(self, filepath):
+        # For example: `vit_s16.pt` from the huggingface dataset `jaisidhsingh/cc3m558k-img-embed-dim-384` 
+        self.embeddings = torch.load(filepath, weights_only=False, map_location="cpu")
+        self.embed_dim = self.embeddings.shape[-1]
+
+    def __len__(self):
+        return len(self.embeddings)
+
+    def __getitem__(self, idx):
+        return self.embeddings[idx]
+
+dataset = EmbeddingDataset("jaisidhsingh/cc3m558k-img-embed-dim-384/vit_s16.pt")
+dataloader = DataLoader(dataset, batch_size=16384, pin_memory=True) # since these are just vectors, batch size can be large 
+```
 
 ## Citation
 
